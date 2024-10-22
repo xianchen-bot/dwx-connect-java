@@ -35,13 +35,13 @@
     ```
 6. 启动成功终端将打印以下内容
     ```
-    .   ____          _            __ _ _
-    /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+      .   ____          _            __ _ _
+     /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
     ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-    \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-    '  |____| .__|_| |_|_| |_\__, | / / / /
-    =========|_|==============|___/=/_/_/_/
-    :: Spring Boot ::        (v2.2.2.RELEASE)
+     \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+      '  |____| .__|_| |_|_| |_\__, | / / / /
+     =========|_|==============|___/=/_/_/_/
+     :: Spring Boot ::        (v2.2.2.RELEASE)
     
     2024-10-22 19:17:12.912  INFO 32387 --- [           main] c.x.dwxconnect.DwxConnectApplication     : Starting DwxConnectApplication v0.0.1-SNAPSHOT on ...
     2024-10-22 19:17:12.914  INFO 32387 --- [           main] c.x.dwxconnect.DwxConnectApplication     : No active profile set, falling back to default profiles: default
