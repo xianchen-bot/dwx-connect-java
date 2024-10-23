@@ -20,7 +20,7 @@ public class ClientService {
 
     // 这项目前如果走配置的话，会提示找不到目录，先代码里写死吧
 //    @Value("${meta_trader_dir_path}")
-    private final static String MEAT_TRADE_DIR_PATH = "/Users/admin/Documents/dev/dwx-connect-java/MQL4/Files/";
+    private final static String MEAT_TRADE_DIR_PATH = "C:\\Users\\Administrator\\AppData\\Roaming\\MetaQuotes\\Terminal\\5D49F47D1EA1ECFC0DDC965B6D100AC5\\MQL4\\Files";
 
     @Value("${sleep_delay}")
     private int sleepDelayMs;
