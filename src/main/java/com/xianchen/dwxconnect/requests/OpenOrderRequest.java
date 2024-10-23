@@ -18,4 +18,6 @@ public class OpenOrderRequest {
     private String comment = "";
     private long expiration = 0L;
 
+    private double rpt = 0d;
+
 }
