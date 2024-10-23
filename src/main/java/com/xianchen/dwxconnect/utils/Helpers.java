@@ -24,7 +24,7 @@ public class Helpers {
 	
 	*/
     public static void print(Object obj) {
-        log.info(JSON.toJSONString(obj));
+        // log.info(JSON.toJSONString(obj));
     }
 	
     
