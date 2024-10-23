@@ -10,7 +10,7 @@ public class OpenOrderRequest {
 
     private String symbol;
     private String orderType;
-    private double lots = 0d;
+    private double lots = 0.01d;
     private double price = 0d;
     private double stopLoss = 0d;
     private double takeProfit = 0d;
