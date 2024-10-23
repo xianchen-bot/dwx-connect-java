@@ -74,15 +74,15 @@ public class ClientService {
             AccountInfo accountInfo = JSON.parseObject(String.valueOf(client.accountInfo), AccountInfo.class);
             double rpt = openOrderRequest.getRpt();
             if(rpt >= 1) rpt /= 100;
-            System.out.println("账户余额：" + accountInfo.getBalance() + "rpt:" + rpt);
-            System.out.flush();
+//            System.out.println("账户余额：" + accountInfo.getBalance() + "rpt:" + rpt);
+//            System.out.flush();
             //计算手数：手数 = (资金 * rpt * 0.01) / (单位浮动金额 * k * 价差)， 其中，k = ticks / 价差
             double lots = (accountInfo.getBalance() * rpt * 0.01)/(floatMoney * k * Math.abs(openOrderRequest.getPrice() - openOrderRequest.getStopLoss()));
             BigDecimal bg = new BigDecimal(lots).setScale(2,RoundingMode.UP);
             client.openOrder(openOrderRequest.getSymbol(), openOrderRequest.getOrderType(), bg.doubleValue(),
                     openOrderRequest.getPrice(), openOrderRequest.getStopLoss(), openOrderRequest.getTakeProfit(),
                     openOrderRequest.getMagic(), openOrderRequest.getComment(), openOrderRequest.getExpiration());
-             log.info("openOrder finished.");
+//             log.info("openOrder finished.");
         } catch (Exception e) {
             log.error("openOrder failed.", e);
         }
