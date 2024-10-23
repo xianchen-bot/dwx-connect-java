@@ -72,6 +72,8 @@ public class ClientService {
                 log.error( "accountInfo is empty.");
             }
             AccountInfo accountInfo = JSON.parseObject(String.valueOf(client.accountInfo), AccountInfo.class);
+            System.out.println(accountInfo);
+            System.out.flush();
             double rpt = openOrderRequest.getRpt();
             if(rpt >= 1) rpt /= 100;
             //计算手数：手数 = (资金 * rpt * 0.01) / (单位浮动金额 * k * 价差)， 其中，k = ticks / 价差
