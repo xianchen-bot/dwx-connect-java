@@ -72,7 +72,7 @@ public class ClientService {
                 log.error( "accountInfo is empty.");
             }
             AccountInfo accountInfo = JSON.parseObject(String.valueOf(client.accountInfo), AccountInfo.class);
-            System.out.println(accountInfo);
+            System.out.println("账户余额："+ accountInfo.getBalance());
             System.out.flush();
             double rpt = openOrderRequest.getRpt();
             if(rpt >= 1) rpt /= 100;
@@ -81,7 +81,7 @@ public class ClientService {
             client.openOrder(openOrderRequest.getSymbol(), openOrderRequest.getOrderType(), lots,
                     openOrderRequest.getPrice(), openOrderRequest.getStopLoss(), openOrderRequest.getTakeProfit(),
                     openOrderRequest.getMagic(), openOrderRequest.getComment(), openOrderRequest.getExpiration());
-            // log.info("openOrder finished.");
+             log.info("openOrder finished.");
         } catch (Exception e) {
             log.error("openOrder failed.", e);
         }
