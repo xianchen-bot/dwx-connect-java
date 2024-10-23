@@ -37,12 +37,12 @@ public class DefaultEventHandler implements EventHandler {
      * use synchronized so that price updates and execution updates are not processed one after the other.
      */
     @Override
-    public synchronized void onTick(Client dwx, String symbol, double bid, double ask) {
+    public synchronized void onTick(Client dwx, String symbol, String bid, String ask) {
         Helpers.print("onTick: " + symbol + " | bid: " + bid + " | ask: " + ask);
     }
 
     @Override
-    public synchronized void onBarData(Client dwx, String symbol, String timeFrame, String time, double open, double high, double low, double close, int tickVolume) {
+    public synchronized void onBarData(Client dwx, String symbol, String timeFrame, String time, String open, String high, String low, String close, String tickVolume) {
         Helpers.print("onBarData: " + symbol + ", " + timeFrame + ", " + time + ", " + open + ", " + high + ", " + low + ", " + close + ", " + tickVolume);
     }
 

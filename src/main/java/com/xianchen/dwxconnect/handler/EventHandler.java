@@ -10,9 +10,9 @@ public interface EventHandler {
     
     void start(Client dwx);
     
-    void onTick(Client dwx, String symbol, double bid, double ask);
+    void onTick(Client dwx, String symbol, String bid, String ask);
     
-    void onBarData(Client dwx, String symbol, String timeFrame, String time, double open, double high, double low, double close, int tickVolume);
+    void onBarData(Client dwx, String symbol, String timeFrame, String time, String open, String high, String low, String close, String tickVolume);
     
 	void onHistoricData(Client dwx, String symbol, String timeFrame, JSONObject data);
 	

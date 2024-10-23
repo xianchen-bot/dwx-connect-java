@@ -179,7 +179,6 @@ public class Client {
             JSONObject data;
             
             try {
-                // data = (JSONObject) parser.parse(text);  // solution for simple json library. 
                 data = JSON.parseObject(text);
             } catch (Exception e) {
                  continue;
@@ -189,7 +188,7 @@ public class Client {
                 continue;
             }
             
-			JSONObject dataOrders = (JSONObject)data.get("orders");
+			JSONObject dataOrders = data.getJSONObject("orders");
             boolean newEvent = false;
             for (String ticket : openOrders.keySet()) {
                 if (!dataOrders.containsKey(ticket)) {
@@ -210,7 +209,7 @@ public class Client {
             }
             
             openOrders = dataOrders;
-			accountInfo = (JSONObject)data.get("account_info");
+			accountInfo = data.getJSONObject("account_info");
             
             if (loadOrdersFromFile) {
                 Helpers.tryWriteToFile(pathOrdersStored, data.toString());
@@ -269,7 +268,7 @@ public class Client {
 					if (millis > lastMessagesMillis) {
 						lastMessagesMillis = millis;
 						if (eventHandler != null) {
-                            eventHandler.onMessage(this, (JSONObject)data.get(millisStr));
+                            eventHandler.onMessage(this, data.getJSONObject(millisStr));
                         }
 					}
 				}
@@ -317,8 +316,8 @@ public class Client {
                 for (String symbol : marketData.keySet()) {
                     
                     if (!lastMarketData.containsKey(symbol) || !marketData.get(symbol).equals(lastMarketData.get(symbol))) {
-                        JSONObject jo = (JSONObject)marketData.get(symbol);
-                        eventHandler.onTick(this, symbol, (double)jo.get("bid"), (double)jo.get("ask"));
+                        JSONObject jo = marketData.getJSONObject(symbol);
+                        eventHandler.onTick(this, symbol, jo.getString("bid"), jo.getString("ask"));
                     }
                 }
             }
@@ -370,8 +369,8 @@ public class Client {
                         if (stSplit.length != 2) {
                             continue;
                         }
-                        JSONObject jo = (JSONObject)barData.get(st);
-                        eventHandler.onBarData(this, stSplit[0], stSplit[1], (String)jo.get("time"), (double)jo.get("open"), (double)jo.get("high"), (double)jo.get("low"), (double)jo.get("close"), (int)jo.get("tick_volume"));
+                        JSONObject jo = barData.getJSONObject(st);
+                        eventHandler.onBarData(this, stSplit[0], stSplit[1], jo.getString("time"), jo.getString("open"), jo.getString("high"), jo.getString("low"), jo.getString("close"), jo.getString("tick_volume"));
                     }
                 }
             }
@@ -421,7 +420,7 @@ public class Client {
 							if (stSplit.length != 2) {
                                 continue;
                             }
-							eventHandler.onHistoricData(this, stSplit[0], stSplit[1], (JSONObject)data.get(st));
+							eventHandler.onHistoricData(this, stSplit[0], stSplit[1], data.getJSONObject(st));
 						}
 					}
 				}
@@ -477,8 +476,8 @@ public class Client {
         }
         
         lastOpenOrdersStr = text;
-		openOrders = (JSONObject)data.get("orders");
-		accountInfo = (JSONObject)data.get("account_info");
+		openOrders = data.getJSONObject("orders");
+		accountInfo = data.getJSONObject("account_info");
     }
 	
     
