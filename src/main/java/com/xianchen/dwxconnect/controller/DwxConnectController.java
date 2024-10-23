@@ -27,6 +27,11 @@ public class DwxConnectController {
         return "hello";
     }
 
+    @GetMapping(value = "/account")
+    public String account() {
+        return clientService.accountInfo();
+    }
+
     @PostMapping("/open_order")
     public String openOrder(@RequestBody String request) {
         //log.info("controller#openOrder with request: {}", request);

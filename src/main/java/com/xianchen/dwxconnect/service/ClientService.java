@@ -3,6 +3,7 @@ package com.xianchen.dwxconnect.service;
 import com.xianchen.dwxconnect.client.Client;
 import com.xianchen.dwxconnect.requests.OpenOrderRequest;
 import com.xianchen.dwxconnect.handler.DefaultEventHandler;
+import com.xianchen.dwxconnect.utils.Helpers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,7 @@ public class ClientService {
             return;
         }
         try {
+            Helpers.print("\nAccount info:\n" + client.accountInfo + "\n");
             client.openOrder(openOrderRequest.getSymbol(), openOrderRequest.getOrderType(), openOrderRequest.getLots(),
                     openOrderRequest.getPrice(), openOrderRequest.getStopLoss(), openOrderRequest.getTakeProfit(),
                     openOrderRequest.getMagic(), openOrderRequest.getComment(), openOrderRequest.getExpiration());
@@ -63,6 +65,20 @@ public class ClientService {
         } catch (Exception e) {
             log.error("openOrder failed.", e);
         }
+    }
+
+    public String accountInfo(){
+        if (Objects.isNull(client)) {
+            log.error("client is null. can not execute.");
+            return "client is null";
+        }
+        try {
+            return client.accountInfo.toString();
+//            Helpers.print("\nAccount info:\n" + client.accountInfo + "\n");
+        } catch (Exception e) {
+            log.error("openOrder failed.", e);
+        }
+        return "error";
     }
 
 }
