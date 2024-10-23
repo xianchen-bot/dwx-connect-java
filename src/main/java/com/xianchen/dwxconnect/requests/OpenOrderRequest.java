@@ -17,7 +17,6 @@ public class OpenOrderRequest {
     private int magic = 0;
     private String comment = "";
     private long expiration = 0L;
-
     private double rpt = 0d;
 
 }

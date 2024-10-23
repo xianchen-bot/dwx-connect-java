@@ -619,7 +619,7 @@ public class Client {
 	*/
     public void openOrder(String symbol, String orderType, double lots, double price, double stopLoss, double takeProfit, int magic, String comment, long expiration) {
         
-        String content = symbol + "," + orderType + "," + lots + "," + price + "," + stopLoss + "," + takeProfit + "," + magic + "," + comment + "," + expiration;
+        String content = symbol + "," + orderType + "," + String.format("%.2f",lots) + "," + price + "," + stopLoss + "," + takeProfit + "," + magic + "," + comment + "," + expiration;
         sendCommand("OPEN_ORDER", content);
     }
 	

@@ -1,15 +1,20 @@
 package com.xianchen.dwxconnect.service;
 
+import com.alibaba.fastjson.JSON;
 import com.xianchen.dwxconnect.client.Client;
+import com.xianchen.dwxconnect.entity.AccountInfo;
 import com.xianchen.dwxconnect.requests.OpenOrderRequest;
 import com.xianchen.dwxconnect.handler.DefaultEventHandler;
 import com.xianchen.dwxconnect.utils.Helpers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 /**
@@ -35,6 +40,12 @@ public class ClientService {
     @Value("${verbose}")
     private boolean verbose;
 
+    @Value("${floatMoney}")
+    private double floatMoney;
+
+    @Value("${k}")
+    private double k;
+
     private Client client = null;
 
     @Resource
@@ -57,8 +68,15 @@ public class ClientService {
             return;
         }
         try {
-            Helpers.print("\nAccount info:\n" + client.accountInfo + "\n");
-            client.openOrder(openOrderRequest.getSymbol(), openOrderRequest.getOrderType(), openOrderRequest.getLots(),
+            if (StringUtils.isEmpty(client.accountInfo)) {
+                log.error( "accountInfo is empty.");
+            }
+            AccountInfo accountInfo = JSON.parseObject(String.valueOf(client.accountInfo), AccountInfo.class);
+            double rpt = openOrderRequest.getRpt();
+            if(rpt >= 1) rpt /= 100;
+            //计算手数：手数 = (资金 * rpt * 0.01) / (单位浮动金额 * k * 价差)， 其中，k = ticks / 价差
+            double lots = (accountInfo.getBalance() * rpt * 0.01)/(floatMoney * k * Math.abs(openOrderRequest.getPrice() - openOrderRequest.getStopLoss()));
+            client.openOrder(openOrderRequest.getSymbol(), openOrderRequest.getOrderType(), lots,
                     openOrderRequest.getPrice(), openOrderRequest.getStopLoss(), openOrderRequest.getTakeProfit(),
                     openOrderRequest.getMagic(), openOrderRequest.getComment(), openOrderRequest.getExpiration());
             // log.info("openOrder finished.");
