@@ -30,33 +30,16 @@
     # 1. 执行 maven 的打包命令，会在 target 目录生成 dwxconnect-0.0.1-SNAPSHOT.jar 文件
     mvn clean package
     
-    # 2. 启动 target 目录下的 .jar 文件
-    java -jar target/dwxconnect-0.0.1-SNAPSHOT.jar
+    # 2. 启动应用：执行 start.sh 脚本（会在当前目录下自动创建logs文件夹，日志信息都会记录在此）
+    ./start.sh
+   
+    # 3. 检查应用运行pid：执行 check.sh 脚本
+    ./check.sh
+   
+    # 4. 终止应用：执行 stop.sh 脚本
+    ./stop.sh
     ```
-6. 启动成功终端将打印以下内容
-    ```
-      .   ____          _            __ _ _
-     /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-    ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-     \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-      '  |____| .__|_| |_|_| |_\__, | / / / /
-     =========|_|==============|___/=/_/_/_/
-     :: Spring Boot ::        (v2.2.2.RELEASE)
-    
-    2024-10-22 19:17:12.912  INFO 32387 --- [           main] c.x.dwxconnect.DwxConnectApplication     : Starting DwxConnectApplication v0.0.1-SNAPSHOT on ...
-    2024-10-22 19:17:12.914  INFO 32387 --- [           main] c.x.dwxconnect.DwxConnectApplication     : No active profile set, falling back to default profiles: default
-    2024-10-22 19:17:13.423  INFO 32387 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-    2024-10-22 19:17:13.429  INFO 32387 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-    2024-10-22 19:17:13.429  INFO 32387 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
-    2024-10-22 19:17:13.463  INFO 32387 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-    2024-10-22 19:17:13.463  INFO 32387 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 516 ms
-    2024-10-22 19:17:15.074  INFO 32387 --- [           main] com.xianchen.dwxconnect.utils.Helpers    : "\nAccount info:\n{}\n"
-    2024-10-22 19:17:15.075  INFO 32387 --- [           main] c.x.dwxconnect.service.ClientService     : Service initialized!
-    2024-10-22 19:17:15.144  INFO 32387 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-    2024-10-22 19:17:15.248  INFO 32387 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-    2024-10-22 19:17:15.252  INFO 32387 --- [           main] c.x.dwxconnect.DwxConnectApplication     : Started DwxConnectApplication in 7.564 seconds (JVM running for 7.807)
-    ```
-7. 验证服务启动与否，浏览器请求以下地址
+6. 验证服务启动与否，浏览器请求以下地址
     ```
     http://127.0.0.1:8080/hello  # 启动成功访问此地址，将会输出 hello
     ```

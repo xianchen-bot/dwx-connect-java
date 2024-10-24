@@ -82,7 +82,7 @@ public class ClientService {
             client.openOrder(openOrderRequest.getSymbol(), openOrderRequest.getOrderType(), bg.doubleValue(),
                     openOrderRequest.getPrice(), openOrderRequest.getStopLoss(), openOrderRequest.getTakeProfit(),
                     openOrderRequest.getMagic(), openOrderRequest.getComment(), openOrderRequest.getExpiration());
-//             log.info("openOrder finished.");
+             log.info("openOrder finished.");
         } catch (Exception e) {
             log.error("openOrder failed.", e);
         }

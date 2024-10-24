@@ -1,6 +1,5 @@
 package com.xianchen.dwxconnect.utils;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -16,17 +15,6 @@ import java.nio.file.Paths;
  */
 @Slf4j
 public class Helpers {
-    
-	/*Prints to console output. 
-	
-	Args:
-		obj (Object): Object to print. 
-	
-	*/
-    public static void print(Object obj) {
-        // log.info(JSON.toJSONString(obj));
-    }
-	
     
 	/*Tries to sleep for a given time period. 
 	

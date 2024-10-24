@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xianchen.dwxconnect.handler.EventHandler;
 import com.xianchen.dwxconnect.utils.Helpers;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -27,6 +28,7 @@ https://github.com/stleary/JSON-java
 /**
  * @author xianchen-bot
  */
+@Slf4j
 public class Client {
 
     private EventHandler eventHandler;
@@ -87,7 +89,7 @@ public class Client {
         
         File f = new File(MetaTraderDirPath);
         if(!f.exists()) {
-            Helpers.print("ERROR: MetaTraderDirPath does not exist!");
+            log.info("ERROR: MetaTraderDirPath does not exist!");
             System.exit(1);
         }
 
@@ -194,7 +196,7 @@ public class Client {
                 if (!dataOrders.containsKey(ticket)) {
                     newEvent = true;
                     if (verbose) {
-                        Helpers.print("Order removed: " + openOrders.get(ticket));
+                        log.info("Order removed: {}", openOrders.getString(ticket));
                     }
                 }
             }
@@ -203,7 +205,7 @@ public class Client {
                 if (!openOrders.containsKey(ticket)) {
                     newEvent = true;
                     if (verbose) {
-                        Helpers.print("New order: " + dataOrders.get(ticket));
+                        log.info("New order: {}", dataOrders.getString(ticket));
                     }
                 }
             }

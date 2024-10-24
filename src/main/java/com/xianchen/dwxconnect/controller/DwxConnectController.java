@@ -34,7 +34,7 @@ public class DwxConnectController {
 
     @PostMapping("/open_order")
     public String openOrder(@RequestBody String request) {
-        //log.info("controller#openOrder with request: {}", request);
+        log.info("controller#openOrder with request: {}", request);
         if (StringUtils.isEmpty(request)) {
             return "request can not be empty.";
         }

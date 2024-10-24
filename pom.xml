@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.xianchen</groupId>
 	<artifactId>dwxconnect</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>dwx</name>
 	<description>A java service for connecting to dwx</description>
 
